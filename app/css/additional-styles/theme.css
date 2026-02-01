@@ -1,0 +1,493 @@
+/* Hero brands - horizontal marquee animation */
+@keyframes hero-brands-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-brands-marquee {
+  animation: hero-brands-scroll 25s linear infinite;
+}
+
+.hero-brands-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Partner stats card animations */
+@keyframes stats-card-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes stats-card-glow {
+  0%, 100% {
+    box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.25);
+  }
+  50% {
+    box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.35),
+      0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+}
+
+@keyframes stats-item-enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stats-gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.stats-card-enter {
+  animation: stats-card-enter 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.stats-card-glow {
+  animation: stats-card-glow 4s ease-in-out infinite;
+}
+
+.stats-item-enter {
+  animation: stats-item-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+/* Custom AOS animations */
+@media screen {
+  html:not(.no-js) body [data-aos="fade-up"] {
+    -webkit-transform: translate3d(0, 10px, 0);
+    transform: translate3d(0, 10px, 0);
+  }
+
+  html:not(.no-js) body [data-aos="fade-down"] {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  html:not(.no-js) body [data-aos="fade-right"] {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  html:not(.no-js) body [data-aos="fade-left"] {
+    -webkit-transform: translate3d(10px, 0, 0);
+    transform: translate3d(10px, 0, 0);
+  }
+
+  html:not(.no-js) body [data-aos="fade-up-right"] {
+    -webkit-transform: translate3d(-10px, 10px, 0);
+    transform: translate3d(-10px, 10px, 0);
+  }
+
+  html:not(.no-js) body [data-aos="fade-up-left"] {
+    -webkit-transform: translate3d(10px, 10px, 0);
+    transform: translate3d(10px, 10px, 0);
+  }
+
+  html:not(.no-js) body [data-aos="fade-down-right"] {
+    -webkit-transform: translate3d(-10px, -10px, 0);
+    transform: translate3d(-10px, -10px, 0);
+  }
+
+  html:not(.no-js) body [data-aos="fade-down-left"] {
+    -webkit-transform: translate3d(10px, -10px, 0);
+    transform: translate3d(10px, -10px, 0);
+  }
+
+  html:not(.no-js) body [data-aos="zoom-in-up"] {
+    -webkit-transform: translate3d(0, 10px, 0) scale(0.6);
+    transform: translate3d(0, 10px, 0) scale(0.6);
+  }
+
+  html:not(.no-js) body [data-aos="zoom-in-down"] {
+    -webkit-transform: translate3d(0, -10px, 0) scale(0.6);
+    transform: translate3d(0, -10px, 0) scale(0.6);
+  }
+
+  html:not(.no-js) body [data-aos="zoom-in-right"] {
+    -webkit-transform: translate3d(-10px, 0, 0) scale(0.6);
+    transform: translate3d(-10px, 0, 0) scale(0.6);
+  }
+
+  html:not(.no-js) body [data-aos="zoom-in-left"] {
+    -webkit-transform: translate3d(10px, 0, 0) scale(0.6);
+    transform: translate3d(10px, 0, 0) scale(0.6);
+  }
+
+  html:not(.no-js) body [data-aos="zoom-out-up"] {
+    -webkit-transform: translate3d(0, 10px, 0) scale(1.2);
+    transform: translate3d(0, 10px, 0) scale(1.2);
+  }
+
+  html:not(.no-js) body [data-aos="zoom-out-down"] {
+    -webkit-transform: translate3d(0, -10px, 0) scale(1.2);
+    transform: translate3d(0, -10px, 0) scale(1.2);
+  }
+
+  html:not(.no-js) body [data-aos="zoom-out-right"] {
+    -webkit-transform: translate3d(-10px, 0, 0) scale(1.2);
+    transform: translate3d(-10px, 0, 0) scale(1.2);
+  }
+
+  html:not(.no-js) body [data-aos="zoom-out-left"] {
+    -webkit-transform: translate3d(10px, 0, 0) scale(1.2);
+    transform: translate3d(10px, 0, 0) scale(1.2);
+  }
+}
+
+/* Section background animations - visible floating orbs */
+@keyframes section-bg-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.5;
+  }
+  33% {
+    transform: translate(30px, -25px) scale(1.1);
+    opacity: 0.75;
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+    opacity: 0.65;
+  }
+}
+
+@keyframes section-bg-float-slow {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate(-25px, -30px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes section-bg-pulse {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes section-grid-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+/* Shorter duration so grid movement is noticeable */
+@keyframes section-grid-move-fast {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 32px 32px;
+  }
+}
+
+.section-bg-float {
+  animation: section-bg-float 14s ease-in-out infinite;
+}
+
+.section-bg-float-slow {
+  animation: section-bg-float-slow 18s ease-in-out infinite;
+}
+
+.section-bg-pulse {
+  animation: section-bg-pulse 10s ease-in-out infinite;
+}
+
+.section-bg-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(99, 102, 241, 0.2) 1px,
+    transparent 0
+  );
+  background-size: 40px 40px;
+  background-position: 0 0;
+  animation: section-grid-move 25s linear infinite;
+}
+
+/* Dot grid variants – no inline style (avoids hydration mismatch), visible */
+.section-bg-grid-purple {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(139, 92, 246, 0.35) 1.5px,
+    transparent 0
+  );
+  background-size: 28px 28px;
+  background-position: 0 0;
+  animation: section-grid-move 20s linear infinite;
+}
+
+.section-bg-grid-indigo {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(99, 102, 241, 0.4) 1.5px,
+    transparent 0
+  );
+  background-size: 36px 36px;
+  background-position: 0 0;
+  animation: section-grid-move 18s linear infinite;
+}
+
+.section-bg-grid-integration {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(99, 102, 241, 0.35) 1.5px,
+    transparent 0
+  );
+  background-size: 32px 32px;
+  background-position: 0 0;
+  animation: section-grid-move 20s linear infinite;
+}
+
+.section-bg-grid-stats {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(99, 102, 241, 0.45) 2px,
+    transparent 0
+  );
+  background-size: 32px 32px;
+  background-position: 0 0;
+  animation: section-grid-move 15s linear infinite;
+}
+
+/* Visible floating orbs - 3rd section (edhar udhar) */
+@keyframes float-orb-1 {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(60px, -40px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-30px, 30px);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(40px, 20px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes float-orb-2 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-80px, -50px);
+  }
+}
+
+@keyframes float-orb-3 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  33% {
+    transform: translate(50px, 40px);
+  }
+  66% {
+    transform: translate(-40px, -30px);
+  }
+}
+
+@keyframes float-orb-4 {
+  0% {
+    transform: translate(-100px, 0);
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translate(100px, -60px);
+    opacity: 0.4;
+  }
+}
+
+@keyframes float-orb-5 {
+  0% {
+    transform: translate(80px, 40px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-80px, -40px);
+    opacity: 0.6;
+  }
+}
+
+.section-float-orb-1 {
+  animation: float-orb-1 8s ease-in-out infinite;
+}
+
+.section-float-orb-2 {
+  animation: float-orb-2 10s ease-in-out infinite;
+}
+
+.section-float-orb-3 {
+  animation: float-orb-3 9s ease-in-out infinite;
+}
+
+.section-float-orb-4 {
+  animation: float-orb-4 12s ease-in-out infinite;
+}
+
+.section-float-orb-5 {
+  animation: float-orb-5 11s ease-in-out infinite;
+}
+
+/* Partner page - Integration & CTA section animations */
+@keyframes partner-integration-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes partner-tag-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes partner-cta-title {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes partner-cta-desc {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes partner-cta-btn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.partner-integration-enter {
+  animation: partner-integration-enter 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.partner-tag-enter {
+  animation: partner-tag-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+.partner-cta-title {
+  animation: partner-cta-title 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  opacity: 0;
+}
+
+.partner-cta-desc {
+  animation: partner-cta-desc 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+.partner-cta-btn {
+  animation: partner-cta-btn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  opacity: 0;
+}
+
+/* App Download CTA - Your Room is Waiting */
+@keyframes app-download-title {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes app-download-subtitle {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes app-download-buttons {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app-download-title {
+  animation: app-download-title 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
+  opacity: 0;
+}
+
+.app-download-subtitle {
+  animation: app-download-subtitle 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
+  opacity: 0;
+}
+
+.app-download-buttons {
+  animation: app-download-buttons 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+  opacity: 0;
+}

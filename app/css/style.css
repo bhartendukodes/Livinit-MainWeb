@@ -1,0 +1,165 @@
+@import 'tailwindcss';
+
+/* Additional styles */
+@import './additional-styles/utility-patterns.css' layer(components);
+@import './additional-styles/theme.css';
+
+@plugin "@tailwindcss/forms" {
+  strategy: base;
+}
+
+@theme {
+  --font-inter: var(--font-inter), sans-serif;
+  --font-nacelle: var(--font-nacelle), sans-serif;
+
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5384;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5715;
+  --text-base: 0.9375rem;
+  --text-base--line-height: 1.5333;
+  --text-base--letter-spacing: -0.0125em;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.5;
+  --text-lg--letter-spacing: -0.0125em;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.5;
+  --text-xl--letter-spacing: -0.0125em;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 1.415;
+  --text-2xl--letter-spacing: -0.0268em;
+  --text-3xl: 1.75rem;
+  --text-3xl--line-height: 1.3571;
+  --text-3xl--letter-spacing: -0.0268em;
+  --text-4xl: 2.5rem;
+  --text-4xl--line-height: 1.1;
+  --text-4xl--letter-spacing: -0.0268em;
+  --text-5xl: 3.5rem;
+  --text-5xl--line-height: 1;
+  --text-5xl--letter-spacing: -0.0268em;
+  --text-6xl: 4rem;
+  --text-6xl--line-height: 1;
+  --text-6xl--letter-spacing: -0.0268em;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-7xl--letter-spacing: -0.0268em;
+
+  --animate-shine: shine 5s ease-in-out 500ms infinite;
+  --animate-gradient: gradient 6s linear infinite;
+
+  @keyframes shine {
+    0% {
+      top: 0;
+      transform: scaleY(5);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.8;
+    }
+    20% {
+      top: 100%;
+      transform: scaleY(10);
+      opacity: 0;
+    }
+    100% {
+      top: 100%;
+      transform: scaleY(1);
+      opacity: 0;
+    }
+  }
+  @keyframes gradient {
+    to {
+      background-position: 200% center;
+    }
+  }
+  @keyframes hero-gradient {
+    0%, 100% {
+      background-position: 0% center;
+    }
+    50% {
+      background-position: 100% center;
+    }
+  }
+  @keyframes hero-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes hero-glow {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.95;
+    }
+  }
+  @keyframes hero-glow-delayed {
+    0%, 100% {
+      opacity: 0.35;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+  @keyframes bg-float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+      opacity: 0.4;
+    }
+    33% {
+      transform: translate(20px, -15px) scale(1.05);
+      opacity: 0.6;
+    }
+    66% {
+      transform: translate(-10px, 10px) scale(0.98);
+      opacity: 0.5;
+    }
+  }
+  @keyframes bg-float-slow {
+    0%, 100% {
+      transform: translate(0, 0);
+      opacity: 0.25;
+    }
+    50% {
+      transform: translate(-15px, -20px);
+      opacity: 0.4;
+    }
+  }
+  @keyframes bg-pulse {
+    0%, 100% {
+      opacity: 0.15;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+  --animate-hero-reveal: hero-reveal 0.8s ease-out forwards;
+  --animate-hero-glow: hero-glow 6s ease-in-out infinite;
+  --animate-hero-glow-delayed: hero-glow-delayed 8s ease-in-out infinite 1s;
+  --animate-bg-float: bg-float 12s ease-in-out infinite;
+  --animate-bg-float-slow: bg-float-slow 15s ease-in-out infinite;
+  --animate-bg-pulse: bg-pulse 8s ease-in-out infinite;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
