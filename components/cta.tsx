@@ -105,13 +105,13 @@ export default function Cta() {
             onClick={revealExtra}
           />
 
-          {/* Join the Beta – below email, full width */}
+          {/* Try Beta – below email, full width */}
           <button
             type="submit"
             onClick={revealExtra}
             className="btn w-full rounded-xl bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all hover:from-indigo-500 hover:to-purple-500 hover:shadow-indigo-500/30"
           >
-            Join the Beta
+            Try Beta
           </button>
         </form>
 

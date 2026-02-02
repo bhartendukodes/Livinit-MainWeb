@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 type Cell = { text: string; check: boolean; neutral?: boolean };
 
 const COMPARISON: {
@@ -137,39 +135,21 @@ export default function WhyLivinitWins() {
                     Strategic Edge
                   </th>
                   <th className="bg-indigo-500/10 px-4 py-4 text-xs font-semibold uppercase tracking-wider text-indigo-400 md:px-6">
-                    <span className="inline-flex items-center gap-2">
-                      <Image
-                        src="/images/logo.png"
-                        alt="LIVINIT"
-                        width={20}
-                        height={20}
-                        className="rounded"
-                      />
-                      LIVINIT
-                    </span>
+                    LIVINIT
                   </th>
                   <th className="bg-gray-800/50 px-4 py-4 md:px-6">
                     <span className="block text-xs font-semibold uppercase tracking-wider text-gray-300">
                       AI Visualization Apps
-                    </span>
-                    <span className="mt-0.5 block text-[10px] font-medium text-gray-500">
-                      Room Planner, Planner 5D, Room GPT
                     </span>
                   </th>
                   <th className="bg-gray-800/50 px-4 py-4 md:px-6">
                     <span className="block text-xs font-semibold uppercase tracking-wider text-gray-300">
                       Design Services
                     </span>
-                    <span className="mt-0.5 block text-[10px] font-medium text-gray-500">
-                      HAVENLY, DECORILLA, MODSY
-                    </span>
                   </th>
                   <th className="bg-gray-800/50 px-4 py-4 md:px-6">
                     <span className="block text-xs font-semibold uppercase tracking-wider text-gray-300">
                       Retailer AR / Inspo
-                    </span>
-                    <span className="mt-0.5 block text-[10px] font-medium text-gray-500">
-                      IKEA, WAYFAIR, PINTEREST
                     </span>
                   </th>
                 </tr>

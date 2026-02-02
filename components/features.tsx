@@ -1,14 +1,16 @@
 import Image from "next/image";
 
+import FeatureVideoPlayer from "@/components/feature-video-player";
 import Illustration from "@/public/images/page-illustration.svg";
 import BlurredShapeGray from "@/public/images/blurred-shape-gray.svg";
 import BlurredShape from "@/public/images/blurred-shape.svg";
 
+const FEATURE_VIDEOS = {
+  promptToReality: "/videos/Prompt%20to%20Reality.mp4",
+  instantIteration: "/videos/Instant%20iteration.mp4",
+};
+
 const FEATURE_IMAGES = {
-  promptToReality:
-    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80",
-  instantIteration:
-    "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
   styleMatcher:
     "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
 };
@@ -101,13 +103,10 @@ export default function Features() {
             </p>
           </div>
           <div className="relative overflow-hidden rounded-2xl border border-gray-700/50 bg-gray-900/90 shadow-xl">
-            <div className="aspect-[4/3] w-full overflow-hidden">
-              <Image
-                src={FEATURE_IMAGES.promptToReality}
-                alt="AI-generated modern living room with real furniture"
-                width={600}
-                height={450}
-                className="h-full w-full object-cover"
+            <div className="p-2 md:p-3">
+              <FeatureVideoPlayer
+                src={FEATURE_VIDEOS.promptToReality}
+                ariaLabel="AI-generated modern living room with real furniture"
               />
             </div>
             <div className="flex items-center justify-between border-t border-gray-700/50 bg-gray-900/95 px-4 py-3 backdrop-blur-sm">
@@ -127,29 +126,28 @@ export default function Features() {
         {/* 02 INSTANT ITERATION */}
         <div className="mb-20 grid gap-10 md:grid-cols-2 md:items-center md:gap-14">
           <div className="relative overflow-hidden rounded-2xl border border-gray-700/50 bg-gray-900/90 shadow-xl md:order-1">
-            <div className="aspect-[4/3] w-full overflow-hidden">
-              <Image
-                src={FEATURE_IMAGES.instantIteration}
-                alt="Living room with sofa—swap items instantly"
-                width={600}
-                height={450}
-                className="h-full w-full object-cover"
+            <div className="p-2 md:p-3">
+              <FeatureVideoPlayer
+                src={FEATURE_VIDEOS.instantIteration}
+                ariaLabel="Living room with sofa—swap items instantly"
               />
             </div>
             <div className="grid grid-cols-2 gap-3 border-t border-gray-700/50 bg-gray-900/95 p-3 backdrop-blur-sm">
-              <div className="rounded-lg bg-gray-800/90 px-3 py-2">
-                <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400">
-                  CRATE & BARREL
+              <div className="rounded-lg bg-gray-800/90 px-3 py-2.5">
+                <p className="text-[10px] font-medium uppercase tracking-wider text-indigo-400">
+                  One-tap swap
                 </p>
-                <p className="mt-0.5 font-semibold text-white">Sven Sofa</p>
-                <p className="text-sm text-indigo-400">$1,299</p>
+                <p className="mt-0.5 text-sm font-medium text-white">
+                  Replace any piece with alternatives from real retailers
+                </p>
               </div>
-              <div className="rounded-lg bg-gray-800/90 px-3 py-2">
-                <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400">
-                  WEST ELM
+              <div className="rounded-lg bg-gray-800/90 px-3 py-2.5">
+                <p className="text-[10px] font-medium uppercase tracking-wider text-indigo-400">
+                  Real-time preview
                 </p>
-                <p className="mt-0.5 font-semibold text-white">Mid-Century Chair</p>
-                <p className="text-sm text-indigo-400">$899</p>
+                <p className="mt-0.5 text-sm font-medium text-white">
+                  See it in your room instantly—styles, scale & price
+                </p>
               </div>
             </div>
           </div>
