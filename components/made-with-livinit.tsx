@@ -67,7 +67,7 @@ export default function MadeWithLivinit() {
         {/* Header - centered */}
         <div className="mb-10 text-center md:mb-12">
           <h2 className="font-nacelle text-3xl font-bold text-white md:text-4xl">
-            Made with Livinit
+            Made with LIVINIT
           </h2>
           <p className="mx-auto mt-3 max-w-xl text-gray-300">
             Real rooms. Real products. Real budgets.

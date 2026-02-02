@@ -71,8 +71,7 @@ export default function PartnerStatsCard() {
               {STATS.map((stat, i) => (
                 <div
                   key={stat.label}
-                  className="stats-item-enter text-center"
-                  style={{ animationDelay: `${300 + i * 150}ms` }}
+                  className={`stats-item-enter stats-item-delay-${i} text-center`}
                 >
                   <p className="font-nacelle text-4xl font-bold text-white transition-transform duration-300 group-hover:scale-105 md:text-5xl lg:text-6xl">
                     {stat.value}

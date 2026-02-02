@@ -17,7 +17,7 @@ export default function Header() {
           <div className="flex flex-1 items-center justify-end">
             <Link
               href="/partner"
-              className="btn-sm rounded-lg bg-gray-700 px-4 py-2.5 font-medium uppercase tracking-wide text-white transition-colors hover:bg-gray-600"
+              className="btn-sm rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-2.5 font-medium uppercase tracking-wide text-white shadow-md transition-all hover:from-indigo-500 hover:to-purple-500 hover:shadow-lg"
               aria-label="Partner"
             >
               Partner

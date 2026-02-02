@@ -51,7 +51,7 @@ export default function Workflows() {
             {
               icon: FaBolt,
               title: "Instant Shopping",
-              desc: "Every item is shoppable from Wayfair, Crate & Barrel, and more",
+              desc: "Every item is shoppable from WAYFAIR, CRATE & BARREL, and more",
             },
           ].map((item, idx) => (
             <div

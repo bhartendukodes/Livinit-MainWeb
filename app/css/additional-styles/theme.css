@@ -1,3 +1,23 @@
+/* Hero line animation delays - avoid inline style for hydration */
+.hero-delay-0 { animation-delay: 0ms; }
+.hero-delay-120 { animation-delay: 120ms; }
+.hero-delay-240 { animation-delay: 240ms; }
+.hero-delay-360 { animation-delay: 360ms; }
+.hero-delay-480 { animation-delay: 480ms; }
+.hero-delay-550 { animation-delay: 550ms; }
+
+/* Partner integration tag delays */
+.partner-tag-delay-0 { animation-delay: 100ms; }
+.partner-tag-delay-1 { animation-delay: 180ms; }
+.partner-tag-delay-2 { animation-delay: 260ms; }
+.partner-tag-delay-3 { animation-delay: 340ms; }
+.partner-tag-delay-4 { animation-delay: 420ms; }
+
+/* Partner stats item delays */
+.stats-item-delay-0 { animation-delay: 300ms; }
+.stats-item-delay-1 { animation-delay: 450ms; }
+.stats-item-delay-2 { animation-delay: 600ms; }
+
 /* Hero brands - horizontal marquee animation */
 @keyframes hero-brands-scroll {
   0% {

@@ -10,7 +10,7 @@ export default function PartnerHero() {
             <h1 className="font-nacelle text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
               Partner with{" "}
               <span className="bg-linear-to-r from-indigo-400 via-purple-400 to-indigo-500 bg-clip-text text-transparent">
-                livinit.
+                LIVINIT.
               </span>
             </h1>
 
@@ -46,25 +46,25 @@ export default function PartnerHero() {
               >
                 <div className="hero-brands-marquee flex w-max items-center gap-x-12 sm:gap-x-16 md:gap-x-20">
                   <span className="shrink-0 text-base font-medium text-gray-500">
-                    Wayfair
+                    WAYFAIR
                   </span>
                   <span className="shrink-0 text-base italic text-gray-400">
-                    west elm
+                    WEST ELM
                   </span>
                   <span className="shrink-0 text-base font-bold uppercase tracking-wide text-gray-500">
-                    Crate & Barrel
+                    CRATE & BARREL
                   </span>
                   <span className="shrink-0 text-base font-medium uppercase tracking-wide text-gray-500">
                     Pottery Barn
                   </span>
                   <span className="shrink-0 text-base font-medium text-gray-500">
-                    Wayfair
+                    WAYFAIR
                   </span>
                   <span className="shrink-0 text-base italic text-gray-400">
-                    west elm
+                    WEST ELM
                   </span>
                   <span className="shrink-0 text-base font-bold uppercase tracking-wide text-gray-500">
-                    Crate & Barrel
+                    CRATE & BARREL
                   </span>
                   <span className="shrink-0 text-base font-medium uppercase tracking-wide text-gray-500">
                     Pottery Barn

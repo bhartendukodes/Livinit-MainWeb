@@ -47,8 +47,7 @@ export default function PartnerIntegration() {
             {INTEGRATIONS.map((name, i) => (
               <span
                 key={name}
-                className="partner-tag-enter rounded-full border border-gray-600/60 bg-gray-700/50 px-5 py-2.5 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-indigo-500/50 hover:bg-indigo-500/20 hover:text-white"
-                style={{ animationDelay: `${100 + i * 80}ms` }}
+                className={`partner-tag-enter partner-tag-delay-${i} rounded-full border border-gray-600/60 bg-gray-700/50 px-5 py-2.5 text-sm font-medium text-gray-200 transition-all duration-300 hover:border-indigo-500/50 hover:bg-indigo-500/20 hover:text-white`}
               >
                 {name}
               </span>

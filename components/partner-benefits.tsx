@@ -2,7 +2,7 @@ const BENEFITS = [
   {
     title: "List for Free",
     description:
-      "Add your entire catalog to Livinit at zero cost. We integrate with your existing product feed.",
+      "Add your entire catalog to LIVINIT at zero cost. We integrate with your existing product feed.",
     icon: "cube",
     color: "blue",
   },

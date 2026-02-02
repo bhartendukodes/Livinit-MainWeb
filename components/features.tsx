@@ -75,7 +75,7 @@ export default function Features() {
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-300">
-            From empty rooms to curated layouts, Livinit&apos;s spatial
+            From empty rooms to curated layouts, LIVINIT&apos;s spatial
             intelligence handles the math so you can focus on the mood.
           </p>
         </div>
@@ -87,11 +87,11 @@ export default function Features() {
               <span className="rounded-full bg-indigo-500/20 px-3 py-1 text-sm font-semibold text-indigo-400">
                 01
               </span>
-              <span className="text-sm font-semibold uppercase tracking-wider text-indigo-400">
+              <span className="font-nacelle text-xl font-semibold uppercase tracking-wider text-indigo-400 md:text-2xl">
                 Prompt-to-reality
               </span>
             </span>
-            <h3 className="mb-3 font-nacelle text-xl font-semibold text-white md:text-2xl">
+            <h3 className="mb-3 text-sm font-semibold text-white">
               Design the entire room with a single prompt
             </h3>
             <p className="text-gray-300 leading-relaxed">
@@ -139,14 +139,14 @@ export default function Features() {
             <div className="grid grid-cols-2 gap-3 border-t border-gray-700/50 bg-gray-900/95 p-3 backdrop-blur-sm">
               <div className="rounded-lg bg-gray-800/90 px-3 py-2">
                 <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400">
-                  Crate & Barrel
+                  CRATE & BARREL
                 </p>
                 <p className="mt-0.5 font-semibold text-white">Sven Sofa</p>
                 <p className="text-sm text-indigo-400">$1,299</p>
               </div>
               <div className="rounded-lg bg-gray-800/90 px-3 py-2">
                 <p className="text-[10px] font-medium uppercase tracking-wider text-gray-400">
-                  West Elm
+                  WEST ELM
                 </p>
                 <p className="mt-0.5 font-semibold text-white">Mid-Century Chair</p>
                 <p className="text-sm text-indigo-400">$899</p>
@@ -158,11 +158,11 @@ export default function Features() {
               <span className="rounded-full bg-indigo-500/20 px-3 py-1 text-sm font-semibold text-indigo-400">
                 02
               </span>
-              <span className="text-sm font-semibold uppercase tracking-wider text-indigo-400">
+              <span className="font-nacelle text-xl font-semibold uppercase tracking-wider text-indigo-400 md:text-2xl">
                 Instant iteration
               </span>
             </span>
-            <h3 className="mb-3 font-nacelle text-xl font-semibold text-white md:text-2xl">
+            <h3 className="mb-3 text-sm font-semibold text-white">
               Swap any piece and see it in your space instantly
             </h3>
             <p className="text-gray-300 leading-relaxed">
@@ -180,11 +180,11 @@ export default function Features() {
               <span className="rounded-full bg-indigo-500/20 px-3 py-1 text-sm font-semibold text-indigo-400">
                 03
               </span>
-              <span className="text-sm font-semibold uppercase tracking-wider text-indigo-400">
+              <span className="font-nacelle text-xl font-semibold uppercase tracking-wider text-indigo-400 md:text-2xl">
                 Style matcher
               </span>
             </span>
-            <h3 className="mb-3 font-nacelle text-xl font-semibold text-white md:text-2xl">
+            <h3 className="mb-3 text-sm font-semibold text-white">
               Find products that complement your existing furniture
             </h3>
             <p className="text-gray-300 leading-relaxed">

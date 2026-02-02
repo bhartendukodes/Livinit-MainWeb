@@ -6,7 +6,7 @@ import PartnerIntegration from "@/components/partner-integration";
 import PartnerCta from "@/components/partner-cta";
 
 export const metadata = {
-  title: "Partner with Livinit",
+  title: "Partner with LIVINIT",
   description:
     "Transform your furniture catalog into an AI-powered shopping experience. Join leading retailers on our platform.",
 };
