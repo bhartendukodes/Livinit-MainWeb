@@ -8,7 +8,7 @@ import Hero from "@/components/hero-home";
 import Workflows from "@/components/workflows";
 import Features from "@/components/features";
 import WhyLivinitWins from "@/components/why-livinit-wins";
-import MadeWithLivinit from "@/components/made-with-livinit";
+import MadeWithLivinitClient from "@/components/made-with-livinit-client";
 import Cta from "@/components/cta";
 import AppDownloadCta from "@/components/app-download-cta";
 
@@ -20,7 +20,7 @@ export default function Home() {
       <Workflows />
       <Features />
       <WhyLivinitWins />
-      <MadeWithLivinit />
+      <MadeWithLivinitClient />
       <Cta />
       <AppDownloadCta />
     </>

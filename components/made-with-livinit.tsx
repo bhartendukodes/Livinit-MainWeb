@@ -2,7 +2,7 @@
 
 import "@google/model-viewer";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const API_URL = "https://api.livinit.ai/api/v1/templates/livinit";
 const TEMPLATES_LIMIT = 20;
@@ -153,15 +153,15 @@ export default function MadeWithLivinit() {
             <div className="overflow-hidden rounded-3xl bg-gray-900 shadow-2xl ring-1 ring-gray-700/50">
               {/* GLB viewer: full width, fixed aspect, model fits fully inside card (sharp, no crop) */}
               <div className="made-with-livinit-viewer relative w-full aspect-[16/10] min-h-[280px] md:min-h-[340px]">
-                <model-viewer
-                  src={slide.model_glb}
-                  alt={`${formatTitle(slide.style, slide.size_room)} room – 3D model`}
-                  camera-controls
-                  auto-rotate
-                  camera-orbit="0deg 75deg 2.5m"
-                  min-field-of-view="30deg"
-                  max-field-of-view="70deg"
-                />
+                {React.createElement("model-viewer", {
+                  src: slide.model_glb,
+                  alt: `${formatTitle(slide.style, slide.size_room)} room – 3D model`,
+                  "camera-controls": true,
+                  "auto-rotate": true,
+                  "camera-orbit": "0deg 75deg 2.5m",
+                  "min-field-of-view": "30deg",
+                  "max-field-of-view": "70deg",
+                })}
 
                 {/* Gradient overlay for text readability */}
                 <div
