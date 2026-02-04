@@ -34,7 +34,12 @@ export default function MadeWithLivinit() {
   const [error, setError] = useState<string | null>(null);
   const [current, setCurrent] = useState(0);
   const [inView, setInView] = useState(false);
+  const [modelLoaded, setModelLoaded] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const viewerContainerRef = useRef<HTMLDivElement>(null);
+
+  const slide = templates[current];
+  const hasSlides = templates.length > 0;
 
   // Fetch all 20 templates on load, then prefetch all GLB URLs so they’re cached when user scrolls down
   useEffect(() => {
@@ -86,8 +91,39 @@ export default function MadeWithLivinit() {
     return () => observer.disconnect();
   }, []);
 
-  const slide = templates[current];
-  const hasSlides = templates.length > 0;
+  // When slide changes, GLB is loading again
+  useEffect(() => {
+    setModelLoaded(false);
+  }, [current]);
+
+  // Listen for model-viewer 'load' so we hide loader when GLB is ready
+  useEffect(() => {
+    if (!slide) return;
+    const container = viewerContainerRef.current;
+    let timeoutId: ReturnType<typeof setTimeout>;
+    let cleanup: (() => void) | undefined;
+
+    const onLoad = () => {
+      setModelLoaded(true);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+
+    timeoutId = setTimeout(() => setModelLoaded(true), 12000);
+
+    const id = requestAnimationFrame(() => {
+      const viewer = container?.querySelector("model-viewer");
+      if (viewer) {
+        viewer.addEventListener("load", onLoad);
+        cleanup = () => viewer.removeEventListener("load", onLoad);
+      }
+    });
+
+    return () => {
+      clearTimeout(timeoutId);
+      cancelAnimationFrame(id);
+      cleanup?.();
+    };
+  }, [current, slide]);
 
   return (
     <section
@@ -152,7 +188,10 @@ export default function MadeWithLivinit() {
           <div className="relative">
             <div className="overflow-hidden rounded-3xl bg-gray-900 shadow-2xl ring-1 ring-gray-700/50">
               {/* GLB viewer: full width, fixed aspect, model fits fully inside card (sharp, no crop) */}
-              <div className="made-with-livinit-viewer relative w-full aspect-[16/10] min-h-[280px] md:min-h-[340px]">
+              <div
+                ref={viewerContainerRef}
+                className="made-with-livinit-viewer relative w-full aspect-[16/10] min-h-[280px] md:min-h-[340px]"
+              >
                 {React.createElement("model-viewer", {
                   src: slide.model_glb,
                   alt: `${formatTitle(slide.style, slide.size_room)} room – 3D model`,
@@ -162,6 +201,19 @@ export default function MadeWithLivinit() {
                   "min-field-of-view": "30deg",
                   "max-field-of-view": "70deg",
                 })}
+
+                {/* Loader: show until GLB model has loaded (GLB can take time) */}
+                {!modelLoaded && (
+                  <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-4 bg-gray-900/95 backdrop-blur-sm">
+                    <div className="h-12 w-12 animate-spin rounded-full border-2 border-indigo-500 border-t-transparent" />
+                    <p className="text-sm font-medium text-white/90">
+                      Loading 3D model…
+                    </p>
+                    <p className="text-xs text-gray-400">
+                      This may take a few seconds
+                    </p>
+                  </div>
+                )}
 
                 {/* Gradient overlay for text readability */}
                 <div
