@@ -2,8 +2,17 @@
 
 import { useState, useRef, useEffect } from "react";
 
+const API_URL = "https://api.livinit.ai/api/v1/users";
+
 export default function Cta() {
   const [showExtraFields, setShowExtraFields] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const bottomSentinelRef = useRef<HTMLDivElement>(null);
 
@@ -25,6 +34,80 @@ export default function Cta() {
   }, []);
 
   const revealExtra = () => setShowExtraFields(true);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setShowExtraFields(true);
+
+    const body = {
+      first_name: firstName.trim(),
+      last_name: lastName.trim(),
+      mobile_number: mobileNumber.trim() || "",
+      email: email.trim(),
+      extra_info: {},
+    };
+
+    if (!body.first_name || !body.last_name || !body.email) {
+      setError("Please fill in first name, last name, and email.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(
+          (data as { detail?: string }).detail ||
+            data.message ||
+            `Request failed (${res.status})`
+        );
+      }
+      setSuccess(true);
+      setFirstName("");
+      setLastName("");
+      setMobileNumber("");
+      setEmail("");
+    } catch (err) {
+      setError(
+        err instanceof Error ? err.message : "Something went wrong. Please try again."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (success) {
+    return (
+      <section
+        id="retail-reality-sync"
+        className="relative overflow-hidden border-t border-gray-800 py-16 md:py-24 scroll-mt-24"
+      >
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
+            <svg className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h2 className="mt-6 font-nacelle text-3xl font-bold text-white md:text-4xl">
+            You&apos;re on the list
+          </h2>
+          <p className="mx-auto mt-3 max-w-md text-lg text-gray-300">
+            We&apos;ll send your private beta link to your email. Check your inbox soon.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -57,11 +140,17 @@ export default function Cta() {
           beta link for to-scale layouts that fit your floor plan.
         </p>
 
-        {/* Form: 3 fields (above) → Email → Join Beta button (below) */}
+        {/* Form: 3 fields (above) → Email → Try Beta button (below) */}
         <form
           className="mx-auto mt-8 flex max-w-md flex-col gap-3"
-          onSubmit={(e) => e.preventDefault()}
+          onSubmit={handleSubmit}
         >
+          {error && (
+            <p className="rounded-xl bg-red-500/10 px-4 py-2.5 text-sm text-red-400 ring-1 ring-red-500/30">
+              {error}
+            </p>
+          )}
+
           {/* Expandable: First name, Last name, Phone – only after email click/focus, ABOVE email */}
           <div
             className={`max-w-md overflow-hidden transition-all duration-500 ease-out ${
@@ -74,6 +163,8 @@ export default function Cta() {
                   type="text"
                   placeholder="First name (required)"
                   required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
                   className="form-input min-h-12 rounded-xl border border-gray-600 bg-gray-800/80 px-4 py-3 text-white placeholder-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30"
                   aria-label="First name (required)"
                 />
@@ -81,6 +172,8 @@ export default function Cta() {
                   type="text"
                   placeholder="Last name (required)"
                   required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
                   className="form-input min-h-12 rounded-xl border border-gray-600 bg-gray-800/80 px-4 py-3 text-white placeholder-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30"
                   aria-label="Last name (required)"
                 />
@@ -88,6 +181,8 @@ export default function Cta() {
               <input
                 type="tel"
                 placeholder="Phone number (optional)"
+                value={mobileNumber}
+                onChange={(e) => setMobileNumber(e.target.value)}
                 className="form-input min-h-12 rounded-xl border border-gray-600 bg-gray-800/80 px-4 py-3 text-white placeholder-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30"
                 aria-label="Phone number (optional)"
               />
@@ -99,6 +194,8 @@ export default function Cta() {
             type="email"
             placeholder="Enter your email address... (required)"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="form-input min-h-12 w-full rounded-xl border border-gray-600 bg-gray-800/80 px-4 py-3 text-white placeholder-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30"
             aria-label="Email address (required)"
             onFocus={revealExtra}
@@ -109,9 +206,10 @@ export default function Cta() {
           <button
             type="submit"
             onClick={revealExtra}
-            className="btn w-full rounded-xl bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all hover:from-indigo-500 hover:to-purple-500 hover:shadow-indigo-500/30"
+            disabled={loading}
+            className="btn w-full rounded-xl bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all hover:from-indigo-500 hover:to-purple-500 hover:shadow-indigo-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            Try Beta
+            {loading ? "Submitting…" : "Try Beta"}
           </button>
         </form>
 
