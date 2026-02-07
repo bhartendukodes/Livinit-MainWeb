@@ -8,11 +8,7 @@ import BlurredShape from "@/public/images/blurred-shape.svg";
 const FEATURE_VIDEOS = {
   promptToReality: "/videos/Prompt%20to%20Reality.mp4",
   instantIteration: "/videos/Instant%20iteration.mp4",
-};
-
-const FEATURE_IMAGES = {
-  styleMatcher:
-    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
+  styleMatcher: "/videos/third.mp4",
 };
 
 export default function Features() {
@@ -193,24 +189,11 @@ export default function Features() {
             </p>
           </div>
           <div className="relative overflow-hidden rounded-2xl border border-gray-700/50 bg-gray-900/90 shadow-xl">
-            <div className="aspect-[4/3] w-full overflow-hidden">
-              <Image
-                src={FEATURE_IMAGES.styleMatcher}
-                alt="Style matching—upload your furniture, get matching suggestions"
-                width={600}
-                height={450}
-                className="h-full w-full object-cover"
+            <div className="p-2 md:p-3">
+              <FeatureVideoPlayer
+                src={FEATURE_VIDEOS.styleMatcher}
+                ariaLabel="Style matching—upload your furniture, get matching suggestions"
               />
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900/70 backdrop-blur-[3px]">
-              <div className="rounded-2xl border-2 border-dashed border-white/25 bg-gray-900/60 px-6 py-5 text-center">
-                <p className="text-sm font-medium text-white">
-                  Upload photo of your furniture
-                </p>
-                <p className="mt-1 text-xs text-gray-400">
-                  We&apos;ll suggest perfectly matching pieces
-                </p>
-              </div>
             </div>
           </div>
         </div>

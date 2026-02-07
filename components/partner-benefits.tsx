@@ -122,9 +122,9 @@ export default function PartnerBenefits() {
             </span>
           </div>
           <h2 className="mb-6 font-nacelle text-4xl font-semibold text-white md:text-5xl">
-            Grow Your{" "}
+            Full-Stack{" "}
             <span className="bg-linear-to-r from-indigo-400 via-purple-400 to-indigo-500 bg-clip-text text-transparent">
-              Retail.
+              3D Ecosystem.
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-300">

@@ -162,7 +162,7 @@ export default function MadeWithLivinit() {
             Real rooms. Real products. Real budgets.
           </p>
           <Link
-            href="/catalog"
+            href="/templates"
             className="group mt-4 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider text-gray-400 transition-colors hover:text-indigo-400"
           >
             View full catalog
@@ -186,7 +186,10 @@ export default function MadeWithLivinit() {
 
         {!loading && !error && hasSlides && slide && (
           <div className="relative">
-            <div className="overflow-hidden rounded-3xl bg-gray-900 shadow-2xl ring-1 ring-gray-700/50">
+            <Link
+              href={`/templates/${slide.id}`}
+              className="block overflow-hidden rounded-3xl bg-gray-900 shadow-2xl ring-1 ring-gray-700/50 transition-all hover:ring-indigo-500/50 cursor-pointer"
+            >
               {/* GLB viewer: full width, fixed aspect, model fits fully inside card (sharp, no crop) */}
               <div
                 ref={viewerContainerRef}
@@ -244,11 +247,13 @@ export default function MadeWithLivinit() {
                 {/* Carousel arrows */}
                 <button
                   type="button"
-                  onClick={() =>
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                     setCurrent((c) =>
                       c === 0 ? templates.length - 1 : c - 1
-                    )
-                  }
+                    );
+                  }}
                   className="absolute left-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-gray-800 shadow-lg transition-all hover:scale-105 hover:bg-white"
                   aria-label="Previous slide"
                 >
@@ -268,11 +273,13 @@ export default function MadeWithLivinit() {
                 </button>
                 <button
                   type="button"
-                  onClick={() =>
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                     setCurrent((c) =>
                       c === templates.length - 1 ? 0 : c + 1
-                    )
-                  }
+                    );
+                  }}
                   className="absolute right-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-gray-800 shadow-lg transition-all hover:scale-105 hover:bg-white"
                   aria-label="Next slide"
                 >
@@ -291,7 +298,7 @@ export default function MadeWithLivinit() {
                   </svg>
                 </button>
               </div>
-            </div>
+            </Link>
 
             <div className="mt-6 flex justify-center gap-2">
               {templates.map((_, i) => (

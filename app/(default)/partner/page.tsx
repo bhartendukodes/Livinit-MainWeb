@@ -1,7 +1,7 @@
 import PageIllustration from "@/components/page-illustration";
 import PartnerHero from "@/components/partner-hero";
-import PartnerBenefits from "@/components/partner-benefits";
 import PartnerStatsCard from "@/components/partner-stats-card";
+import Partner3DEcosystem from "@/components/partner-3d-ecosystem";
 import PartnerIntegration from "@/components/partner-integration";
 import PartnerCta from "@/components/partner-cta";
 
@@ -16,7 +16,7 @@ export default function PartnerPage() {
     <>
       <PageIllustration />
       <PartnerHero />
-      <PartnerBenefits />
+      <Partner3DEcosystem />
       <PartnerStatsCard />
       <PartnerIntegration />
       <PartnerCta />

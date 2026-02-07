@@ -1,9 +1,10 @@
-/* Made with LIVINIT – GLB model-viewer fills card, sharp render */
+/* Made with LIVINIT – GLB model-viewer fills card, sharp render; pointer-events none so card click opens template page */
 .made-with-livinit-viewer model-viewer {
   width: 100%;
   height: 100%;
   display: block;
   background-color: #0f172a;
+  pointer-events: none;
 }
 
 /* Hero line animation delays - avoid inline style for hydration */
