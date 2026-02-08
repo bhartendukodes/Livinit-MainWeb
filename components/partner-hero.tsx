@@ -25,7 +25,7 @@ export default function PartnerHero() {
               {/* CTAs */}
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
                 <a
-                  href="/#retail-reality-sync"
+                  href="#onboarding"
                   className="w-full rounded-full bg-indigo-500 px-10 py-4 font-bold text-white transition-all hover:bg-indigo-600 hover:scale-105 sm:w-auto"
                 >
                   Request Platform Access

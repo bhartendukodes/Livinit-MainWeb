@@ -3,6 +3,7 @@ import PartnerHero from "@/components/partner-hero";
 import PartnerStatsCard from "@/components/partner-stats-card";
 import Partner3DEcosystem from "@/components/partner-3d-ecosystem";
 import PartnerIntegration from "@/components/partner-integration";
+import PartnerBetaForm from "@/components/partner-beta-form";
 import PartnerCta from "@/components/partner-cta";
 
 export const metadata = {
@@ -19,6 +20,7 @@ export default function PartnerPage() {
       <Partner3DEcosystem />
       <PartnerStatsCard />
       <PartnerIntegration />
+      <PartnerBetaForm />
       <PartnerCta />
     </>
   );
