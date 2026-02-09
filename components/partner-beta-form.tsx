@@ -45,8 +45,8 @@ export default function PartnerBetaForm() {
       extra_info: {},
     };
 
-    if (!body.first_name || !body.last_name || !body.email) {
-      setError("Please fill in first name, last name, and email.");
+    if (!body.first_name || !body.last_name || !body.email || !body.mobile_number) {
+      setError("Please fill in first name, last name, email, and phone number.");
       return;
     }
 
@@ -99,7 +99,7 @@ export default function PartnerBetaForm() {
             You&apos;re on the list
           </h2>
           <p className="mx-auto mt-3 max-w-md text-lg text-gray-300">
-            We&apos;ll send your private beta link to your email. Check your inbox soon.
+            We&apos;ll be in touch soon to get you set up on the platform.
           </p>
         </div>
       </section>
@@ -112,25 +112,16 @@ export default function PartnerBetaForm() {
       className="relative overflow-hidden border-t border-gray-800 py-16 md:py-24 scroll-mt-24"
     >
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
-        <div className="mb-6 inline-flex items-center rounded-full bg-indigo-500/20 px-4 py-1.5">
-          <span className="text-xs font-semibold uppercase tracking-wider text-indigo-300">
-            Retail Reality Sync
-          </span>
-        </div>
-
         <h2 className="font-nacelle text-4xl font-bold text-white md:text-5xl">
-          LIVINIT{" "}
+          Partner with{" "}
           <span className="bg-linear-to-r from-indigo-400 via-purple-400 to-indigo-500 bg-clip-text text-transparent">
-            (Try Beta)
-          </span>
+            LIVINIT
+          </span>{" "}
+          and list for free
         </h2>
-        <p className="mt-2 font-nacelle text-3xl font-bold text-white md:text-4xl">
-          For free
-        </p>
 
         <p className="mx-auto mt-6 max-w-xl text-lg text-gray-300">
-          Spatially intelligent, budget-aware. Enter your email to get a private
-          beta link for to-scale layouts that fit your floor plan.
+          Add your catalog to the platform. Enter your details below to get started.
         </p>
 
         <form
@@ -171,11 +162,12 @@ export default function PartnerBetaForm() {
               </div>
               <input
                 type="tel"
-                placeholder="Phone number (optional)"
+                placeholder="Phone number (required)"
+                required
                 value={mobileNumber}
                 onChange={(e) => setMobileNumber(e.target.value)}
                 className="form-input min-h-12 rounded-xl border border-gray-600 bg-gray-800/80 px-4 py-3 text-white placeholder-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30"
-                aria-label="Phone number (optional)"
+                aria-label="Phone number (required)"
               />
             </div>
           </div>
@@ -198,20 +190,11 @@ export default function PartnerBetaForm() {
             disabled={loading}
             className="btn w-full rounded-xl bg-linear-to-r from-indigo-600 to-purple-600 px-6 py-3 font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all hover:from-indigo-500 hover:to-purple-500 hover:shadow-indigo-500/30 disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {loading ? "Submitting…" : "Try Beta"}
+            {loading ? "Submitting…" : "Partner with LIVINIT"}
           </button>
         </form>
 
         <div ref={bottomSentinelRef} className="h-20 w-full" aria-hidden />
-
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs font-medium uppercase tracking-wider text-gray-400">
-          <span className="inline-flex items-center gap-2">
-            <span className="text-green-400">✓</span>
-            No credit card required
-          </span>
-          <span className="h-4 w-px bg-gray-600" aria-hidden />
-          <span>Limited spots available</span>
-        </div>
       </div>
     </section>
   );

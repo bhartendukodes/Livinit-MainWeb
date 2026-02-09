@@ -30,7 +30,7 @@ export default function AppDownloadCta() {
           Your Room is Waiting
         </h2>
         <p className="app-download-subtitle mt-3 text-lg text-gray-300 md:text-xl">
-          Start designing with AI that respects reality
+          Start designing with spatial intelligence that respects reality
         </p>
 
         <div className="app-download-buttons mt-10 flex flex-wrap items-center justify-center gap-4">

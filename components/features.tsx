@@ -93,7 +93,7 @@ export default function Features() {
               Design the entire room with a single prompt
             </h3>
             <p className="text-gray-300 leading-relaxed">
-              Describe your dream space in plain words—our AI generates a fully
+              Describe your dream space in plain words—we generate a fully
               furnished room using real, shoppable products that fit your style
               and budget. No guesswork, no endless scrolling.
             </p>
@@ -102,14 +102,14 @@ export default function Features() {
             <div className="p-2 md:p-3">
               <FeatureVideoPlayer
                 src={FEATURE_VIDEOS.promptToReality}
-                ariaLabel="AI-generated modern living room with real furniture"
+                ariaLabel="Generated modern living room with real furniture"
               />
             </div>
             <div className="flex items-center justify-between border-t border-gray-700/50 bg-gray-900/95 px-4 py-3 backdrop-blur-sm">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 rounded-full bg-emerald-500" />
                 <span className="text-xs font-medium uppercase tracking-wider text-white">
-                  AI Generative Engine
+                  Generative Engine
                 </span>
               </div>
               <span className="text-xs font-medium text-gray-400">
@@ -182,10 +182,10 @@ export default function Features() {
               Find products that complement your existing furniture
             </h3>
             <p className="text-gray-300 leading-relaxed">
-              Upload a photo of what you already own. We analyze your pieces and
-              suggest new items that match your style, scale, and color
-              palette—so every addition feels like it was always meant to be
-              there.
+              Scan your room with your device. We analyze your space and existing
+              pieces and suggest new items that match your style, scale, and
+              color palette—so every addition feels like it was always meant to
+              be there.
             </p>
           </div>
           <div className="relative overflow-hidden rounded-2xl border border-gray-700/50 bg-gray-900/90 shadow-xl">

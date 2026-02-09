@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState } from "react";
 
 // Inline icons (lucide-style) – same visual as reference
@@ -250,13 +251,12 @@ function FeatureDetailModal({
               </section>
 
               <div className="pt-4">
-                <button
-                  type="button"
-                  onClick={onClose}
+                <Link
+                  href="/partner#onboarding"
                   className="flex w-full items-center justify-center gap-3 rounded-2xl bg-indigo-500 px-12 py-5 font-bold text-white shadow-xl transition-all hover:scale-105 hover:bg-indigo-600 sm:w-auto"
                 >
                   Request Integration Guide <Icons.ArrowRight />
-                </button>
+                </Link>
               </div>
             </div>
           </div>

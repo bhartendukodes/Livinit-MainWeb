@@ -41,7 +41,7 @@ const nacelle = localFont({
 export const metadata = {
   title: "LIVINIT",
   description:
-    "AI-powered interior design with real, shoppable products. Design with ease, live in reality.",
+    "Interior design with real, shoppable products. Design with ease, live in reality.",
   icons: {
     icon: "/images/logo.png",
     apple: "/images/logo.png",

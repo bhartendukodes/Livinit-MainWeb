@@ -3,8 +3,14 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 
 const API_BASE = "https://api.livinit.ai/api/v1/templates/livinit";
+
+const TemplateDetailModelViewer = dynamic(
+  () => import("@/components/template-detail-model-viewer"),
+  { ssr: false }
+);
 
 export type LivinitTemplate = {
   id: number;
@@ -287,29 +293,18 @@ export default function TemplateDetailPage() {
             <XIcon />
           </Link>
           <div className="grid grid-cols-1 md:grid-cols-2">
-            {/* Left: image, title, Total Set Price, Checkout All */}
+            {/* Left: 3D model (not image), title, Total Set Price */}
             <div className="border-b border-white/5 p-8 md:border-b-0 md:border-r">
-              <img
-                src={template.image_url}
-                alt={title}
-                className="mb-6 aspect-square w-full rounded-2xl object-cover"
-              />
+              <div className="mb-6 aspect-square w-full overflow-hidden rounded-2xl bg-gray-950">
+                <TemplateDetailModelViewer modelGlb={template.model_glb} alt={title} />
+              </div>
               <h2 className="mb-2 text-3xl font-bold text-white">{title}</h2>
-              <p className="mb-8 text-gray-400">
+              <p className="mb-6 text-gray-400">
                 {template.style} · {template.size_room}
               </p>
-
-              <div className="flex items-center justify-between rounded-2xl border border-indigo-500/20 bg-indigo-500/5 p-6">
-                <div>
-                  <p className="mb-1 text-xs uppercase tracking-widest text-gray-400">Total Set Price</p>
-                  <p className="text-2xl font-bold text-indigo-400">{template.total_cost}</p>
-                </div>
-                <button
-                  type="button"
-                  className="rounded-xl bg-indigo-500 px-8 py-3 font-bold text-white transition-all hover:bg-indigo-600"
-                >
-                  Checkout All
-                </button>
+              <div className="rounded-2xl border border-indigo-500/20 bg-indigo-500/5 p-6">
+                <p className="mb-1 text-xs uppercase tracking-widest text-gray-400">Total Set Price</p>
+                <p className="text-2xl font-bold text-indigo-400">{template.total_cost}</p>
               </div>
             </div>
 
@@ -337,8 +332,9 @@ export default function TemplateDetailPage() {
                         {img ? (
                           <img
                             src={img}
-                            alt={name}
-                            className="h-16 w-16 shrink-0 rounded-lg object-cover"
+                            alt=""
+                            className="h-16 w-16 shrink-0 rounded-lg object-cover bg-gray-800"
+                            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                           />
                         ) : (
                           <div className="h-16 w-16 shrink-0 rounded-lg bg-white/10" />
@@ -347,8 +343,13 @@ export default function TemplateDetailPage() {
                           <p className="truncate text-sm font-bold text-white">{name}</p>
                           {brand && <p className="text-xs text-gray-500">{brand}</p>}
                         </div>
-                        <div className="text-right shrink-0">
+                        <div className="shrink-0 text-right">
                           <p className="text-sm font-bold text-indigo-400">{price}</p>
+                          {link && (
+                            <span className="mt-1 block text-xs font-semibold text-indigo-400">
+                              Buy at retailer →
+                            </span>
+                          )}
                         </div>
                       </div>
                     );

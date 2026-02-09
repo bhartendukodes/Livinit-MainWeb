@@ -186,10 +186,7 @@ export default function MadeWithLivinit() {
 
         {!loading && !error && hasSlides && slide && (
           <div className="relative">
-            <Link
-              href={`/templates/${slide.id}`}
-              className="block overflow-hidden rounded-3xl bg-gray-900 shadow-2xl ring-1 ring-gray-700/50 transition-all hover:ring-indigo-500/50 cursor-pointer"
-            >
+            <div className="overflow-hidden rounded-3xl bg-gray-900 shadow-2xl ring-1 ring-gray-700/50 transition-all hover:ring-indigo-500/50">
               {/* GLB viewer: full width, fixed aspect, model fits fully inside card (sharp, no crop) */}
               <div
                 ref={viewerContainerRef}
@@ -204,6 +201,15 @@ export default function MadeWithLivinit() {
                   "min-field-of-view": "30deg",
                   "max-field-of-view": "70deg",
                 })}
+
+                {/* Shop product – top right */}
+                <Link
+                  href="/templates"
+                  className="absolute right-4 top-4 z-10 rounded-xl border border-white/20 bg-black/60 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-indigo-500 hover:border-indigo-400"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  Shop product
+                </Link>
 
                 {/* Loader: show until GLB model has loaded (GLB can take time) */}
                 {!modelLoaded && (
@@ -225,7 +231,7 @@ export default function MadeWithLivinit() {
                 />
 
                 {/* Bottom overlay: title + cost */}
-                <div className="absolute bottom-0 left-0 right-0 flex flex-wrap items-end justify-between gap-4 p-6 md:p-8">
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex flex-wrap items-end justify-between gap-4 p-6 md:p-8">
                   <div>
                     <h3 className="font-nacelle text-xl font-bold text-white md:text-2xl">
                       {formatTitle(slide.style, slide.size_room)}
@@ -247,13 +253,11 @@ export default function MadeWithLivinit() {
                 {/* Carousel arrows */}
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
+                  onClick={() =>
                     setCurrent((c) =>
                       c === 0 ? templates.length - 1 : c - 1
-                    );
-                  }}
+                    )
+                  }
                   className="absolute left-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-gray-800 shadow-lg transition-all hover:scale-105 hover:bg-white"
                   aria-label="Previous slide"
                 >
@@ -273,13 +277,11 @@ export default function MadeWithLivinit() {
                 </button>
                 <button
                   type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
+                  onClick={() =>
                     setCurrent((c) =>
                       c === templates.length - 1 ? 0 : c + 1
-                    );
-                  }}
+                    )
+                  }
                   className="absolute right-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-gray-800 shadow-lg transition-all hover:scale-105 hover:bg-white"
                   aria-label="Next slide"
                 >
@@ -298,7 +300,7 @@ export default function MadeWithLivinit() {
                   </svg>
                 </button>
               </div>
-            </Link>
+            </div>
 
             <div className="mt-6 flex justify-center gap-2">
               {templates.map((_, i) => (

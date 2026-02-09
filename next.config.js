@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: "nyvlydjdvhsunqbliqru.supabase.co",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.livinit.ai",
+        pathname: "/**",
+      },
     ],
   },
 };

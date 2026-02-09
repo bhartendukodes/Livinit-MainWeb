@@ -9,7 +9,7 @@ const COMPARISON: {
 }[] = [
   {
     capability: "DESIGN WORKFLOW",
-    livinit: { text: "Instant AI Auto-Layout", check: true },
+    livinit: { text: "Instant Auto-Layout", check: true },
     aiViz: { text: "Manual Drag & Drop", check: false },
     designServices: { text: "Human Consultation", check: false, neutral: true },
     retailerAr: { text: "Single-Item AR", check: false },
@@ -121,7 +121,7 @@ export default function WhyLivinitWins() {
             </span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-gray-300">
-            LIVINIT occupies the &apos;Sweet Spot&apos;: AI Speed + Retail
+            LIVINIT occupies the &apos;Sweet Spot&apos;: Speed + Retail
             Reality.
           </p>
         </div>
@@ -137,8 +137,8 @@ export default function WhyLivinitWins() {
                   <th className="bg-indigo-500/10 px-4 py-4 text-xs font-semibold uppercase tracking-wider text-indigo-400 md:px-6">
                     LIVINIT
                   </th>
-                  <th className="bg-gray-800/50 px-4 py-4 md:px-6">
-                    <span className="block text-xs font-semibold uppercase tracking-wider text-gray-300">
+                  <th className="bg-gray-800/50 whitespace-nowrap px-4 py-4 md:px-6">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-gray-300">
                       AI Visualization Apps
                     </span>
                   </th>
