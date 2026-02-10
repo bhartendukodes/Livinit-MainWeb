@@ -3,22 +3,16 @@
 import "@google/model-viewer";
 import Link from "next/link";
 import React, { useState, useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
+import type { LivinitTemplate } from "@/components/template-modal";
+
+const TemplateModal = dynamic(
+  () => import("@/components/template-modal"),
+  { ssr: false }
+);
 
 const API_URL = "https://api.livinit.ai/api/v1/templates/livinit";
 const TEMPLATES_LIMIT = 20;
-
-export type LivinitTemplate = {
-  id: number;
-  model_id: string;
-  style: string;
-  size_room: string;
-  no_of_assets: number;
-  total_cost: string;
-  image_url: string;
-  model_usdz: string;
-  model_glb: string;
-  created_at: string;
-};
 
 function formatTitle(style: string, sizeRoom: string): string {
   const styleLabel =
@@ -35,6 +29,7 @@ export default function MadeWithLivinit() {
   const [current, setCurrent] = useState(0);
   const [inView, setInView] = useState(false);
   const [modelLoaded, setModelLoaded] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<LivinitTemplate | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const viewerContainerRef = useRef<HTMLDivElement>(null);
 
@@ -202,14 +197,17 @@ export default function MadeWithLivinit() {
                   "max-field-of-view": "70deg",
                 })}
 
-                {/* Shop product – top right */}
-                <Link
-                  href="/templates"
+                {/* Shop product – opens same template modal (3D + product list) as Explore templates */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedTemplate(slide);
+                  }}
                   className="absolute right-4 top-4 z-10 rounded-xl border border-white/20 bg-black/60 px-4 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-indigo-500 hover:border-indigo-400"
-                  onClick={(e) => e.stopPropagation()}
                 >
                   Shop product
-                </Link>
+                </button>
 
                 {/* Loader: show until GLB model has loaded (GLB can take time) */}
                 {!modelLoaded && (
@@ -326,6 +324,13 @@ export default function MadeWithLivinit() {
           </div>
         )}
       </div>
+
+      {selectedTemplate && (
+        <TemplateModal
+          template={selectedTemplate}
+          onClose={() => setSelectedTemplate(null)}
+        />
+      )}
     </section>
   );
 }

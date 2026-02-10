@@ -341,29 +341,6 @@ export default function Partner3DEcosystem() {
               Scale your visual commerce from discovery to checkout. Click a card to explore our modular platform solutions.
             </p>
           </div>
-          <div className="hidden lg:block">
-            <div className="flex items-center gap-4 rounded-3xl border border-indigo-500/20 bg-white/5 px-6 py-4 backdrop-blur-md">
-              <div className="flex -space-x-3">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="h-10 w-10 overflow-hidden rounded-full border-2 border-gray-950 bg-white/10"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={`https://i.pravatar.cc/40?img=${i + 10}`}
-                      alt=""
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-              <div className="text-xs">
-                <span className="font-bold text-white">50+ Brands</span>
-                <p className="text-gray-500">Live on platform</p>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">

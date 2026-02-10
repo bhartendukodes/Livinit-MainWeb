@@ -103,7 +103,7 @@ export default function Footer() {
           {/* Social icons - white on dark circles */}
           <div className="flex items-center gap-3">
             <a
-              href="https://www.youtube.com/@livinit"
+              href="https://www.youtube.com/@Livinit_ai"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 text-white transition hover:bg-indigo-600"

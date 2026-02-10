@@ -3,9 +3,9 @@
 import "@google/model-viewer";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import ProductPreviewImage from "@/components/product-preview-image";
 
-const API_BASE = "https://api.livinit.ai/api/v1/templates/livinit";
-const PRODUCTS_BASE = "https://api.livinit.ai/api/v1";
+const API_BASE = "https://api.livinit.ai/api/v1/templates";
 
 export type LivinitTemplate = {
   id: number;
@@ -34,6 +34,8 @@ export type TemplateProduct = {
   link?: string;
   image_url?: string;
   image?: string;
+  product_image?: string;
+  thumbnail?: string;
   [key: string]: unknown;
 };
 
@@ -56,7 +58,12 @@ function getProductPrice(p: TemplateProduct): string {
   return (p.cost ?? p.price ?? "") as string;
 }
 function getProductImage(p: TemplateProduct): string | undefined {
-  return (p.asset_url ?? p.image_url ?? p.image ?? p.thumbnail) as string | undefined;
+  const img =
+    (p.product_image ?? p.image_url ?? p.image ?? p.thumbnail) as string | undefined;
+  if (img) return img;
+  const asset = p.asset_url as string | undefined;
+  if (asset && /\.(png|jpe?g|webp|gif|svg)(\?|$)/i.test(asset)) return asset;
+  return undefined;
 }
 
 const XIcon = () => (
@@ -76,36 +83,19 @@ function parseProducts(data: unknown): TemplateProduct[] {
 
 async function fetchProductsForTemplate(template: LivinitTemplate): Promise<TemplateProduct[]> {
   const modelId = template.model_id?.trim();
-  const encodedModelId = modelId ? encodeURIComponent(template.model_id) : "";
-
-  const tryGet = async (url: string): Promise<TemplateProduct[]> => {
-    const res = await fetch(url, { headers: { Accept: "application/json" } });
-    return res.ok ? parseProducts(await res.json()) : [];
-  };
-
-  let list = await tryGet(`${API_BASE}/${template.id}/products`);
-  if (list.length) return list;
-  list = await tryGet(`${PRODUCTS_BASE}/products?template_id=${template.id}`);
-  if (list.length) return list;
-  if (encodedModelId) {
-    list = await tryGet(`${PRODUCTS_BASE}/products?model_id=${encodedModelId}`);
-    if (list.length) return list;
-  }
-  const postRes = await fetch(`${PRODUCTS_BASE}/templates/products`, {
-    method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
-    body: JSON.stringify({ template_id: template.id }),
-  });
-  if (postRes.ok) return parseProducts(await postRes.json());
-  if (modelId) {
-    const postRes2 = await fetch(`${PRODUCTS_BASE}/templates/products`, {
+  if (!modelId) return [];
+  try {
+    const res = await fetch(`${API_BASE}/products-by-model`, {
       method: "POST",
       headers: { Accept: "application/json", "Content-Type": "application/json" },
       body: JSON.stringify({ model_id: template.model_id }),
     });
-    if (postRes2.ok) return parseProducts(await postRes2.json());
+    if (!res.ok) return [];
+    const data = (await res.json()) as { products?: TemplateProduct[] };
+    return Array.isArray(data.products) ? data.products : [];
+  } catch {
+    return [];
   }
-  return [];
 }
 
 export default function TemplateModal({
@@ -185,13 +175,16 @@ export default function TemplateModal({
                 return (
                   <li
                     key={p.id ?? i}
-                    className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/5 p-3"
+                    className="flex items-center gap-4 rounded-xl border border-white/5 bg-white/5 p-3"
                   >
-                    {img ? (
-                      <img src={img} alt="" className="h-12 w-12 shrink-0 rounded-lg object-cover bg-gray-800" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
-                    ) : (
-                      <div className="h-12 w-12 shrink-0 rounded-lg bg-white/10" />
-                    )}
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg bg-gray-800">
+                      <ProductPreviewImage
+                        imageUrl={img}
+                        productUrl={link}
+                        className="h-full w-full object-contain"
+                        alt=""
+                      />
+                    </div>
                     <div className="min-w-0 flex-1">
                       <p className="truncate text-sm font-medium text-white">{name}</p>
                       {price && <p className="text-xs text-indigo-400">{price}</p>}

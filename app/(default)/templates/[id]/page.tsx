@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import ProductPreviewImage from "@/components/product-preview-image";
 
 const API_BASE = "https://api.livinit.ai/api/v1/templates/livinit";
 
@@ -48,6 +49,8 @@ export type TemplateProduct = {
   link?: string;
   image_url?: string;
   image?: string;
+  product_image?: string;
+  thumbnail?: string;
   [key: string]: unknown;
 };
 
@@ -94,9 +97,13 @@ function getProductBrand(p: TemplateProduct): string {
   }
 }
 
-/** Match iOS: image from asset_url (or image_url/image/thumbnail) */
+/** Product image: prefer product_image, image_url, image, thumbnail; use asset_url only if it's an image URL */
 function getProductImage(p: TemplateProduct): string | undefined {
-  return (p.asset_url ?? p.image_url ?? p.image ?? p.thumbnail) as string | undefined;
+  const img = (p.product_image ?? p.image_url ?? p.image ?? p.thumbnail) as string | undefined;
+  if (img) return img;
+  const asset = p.asset_url as string | undefined;
+  if (asset && /\.(png|jpe?g|webp|gif|svg)(\?|$)/i.test(asset)) return asset;
+  return undefined;
 }
 
 const XIcon = () => (
@@ -146,93 +153,25 @@ export default function TemplateDetailPage() {
         if (templateObj) {
           setTemplate(templateObj);
 
-          // Fetch products: iOS uses model_id (e.g. "model 35") for template_assets. Try same pattern + template id.
-          let productsData: TemplateProduct[] = [];
-          const productsBase = "https://api.livinit.ai/api/v1";
+          // POST /api/v1/templates/products-by-model with { model_id } for template_assets
           const modelId = templateObj.model_id?.trim();
-          const encodedModelId = modelId ? encodeURIComponent(templateObj.model_id) : "";
-
-          const parseProducts = (data: unknown): TemplateProduct[] => {
-            if (Array.isArray(data)) return data as TemplateProduct[];
-            if (data && typeof data === "object" && Array.isArray((data as { products?: unknown }).products))
-              return (data as { products: TemplateProduct[] }).products;
-            if (data && typeof data === "object" && Array.isArray((data as { product_list?: unknown }).product_list))
-              return (data as { product_list: TemplateProduct[] }).product_list;
-            return [];
-          };
-
-          // 1) GET /api/v1/templates/livinit/{id}/products (template numeric id)
-          if (productsData.length === 0) {
+          if (modelId && !cancelled) {
             try {
-              const res = await fetch(`${API_BASE}/${templateObj.id}/products`, {
-                headers: { Accept: "application/json" },
-              });
-              if (res.ok) productsData = parseProducts(await res.json());
-            } catch {
-              /* try next */
-            }
-          }
-
-          // 2) GET /api/v1/products?template_id={id}
-          if (productsData.length === 0) {
-            try {
-              const res = await fetch(`${productsBase}/products?template_id=${templateObj.id}`, {
-                headers: { Accept: "application/json" },
-              });
-              if (res.ok) productsData = parseProducts(await res.json());
-            } catch {
-              /* try next */
-            }
-          }
-
-          // 3) GET /api/v1/products?model_id={model_id} – matches iOS TemplateAssetService (model_id=eq."model 35")
-          if (productsData.length === 0 && encodedModelId) {
-            try {
-              const res = await fetch(`${productsBase}/products?model_id=${encodedModelId}`, {
-                headers: { Accept: "application/json" },
-              });
-              if (res.ok) productsData = parseProducts(await res.json());
-            } catch {
-              /* try next */
-            }
-          }
-
-          // 4) POST /api/v1/templates/products with template_id in body
-          if (productsData.length === 0) {
-            try {
-              const res = await fetch(`${productsBase}/templates/products`, {
-                method: "POST",
-                headers: { Accept: "application/json", "Content-Type": "application/json" },
-                body: JSON.stringify({ template_id: templateObj.id }),
-              });
-              if (res.ok) productsData = parseProducts(await res.json());
-            } catch {
-              /* try next */
-            }
-          }
-
-          // 5) POST with model_id in body (match iOS key)
-          if (productsData.length === 0 && modelId) {
-            try {
-              const res = await fetch(`${productsBase}/templates/products`, {
+              const productsRes = await fetch("https://api.livinit.ai/api/v1/templates/products-by-model", {
                 method: "POST",
                 headers: { Accept: "application/json", "Content-Type": "application/json" },
                 body: JSON.stringify({ model_id: templateObj.model_id }),
               });
-              if (res.ok) productsData = parseProducts(await res.json());
+              if (productsRes.ok) {
+                const productsData = (await productsRes.json()) as { products?: TemplateProduct[] };
+                if (Array.isArray(productsData.products) && !cancelled)
+                  setProducts(productsData.products);
+              }
             } catch {
-              /* show empty state */
+              /* keep products empty */
             }
           }
-
-          if (!cancelled) setProducts(productsData);
         }
-
-        // If template response already includes products, use them
-        if (Array.isArray(templateData.products) && !cancelled)
-          setProducts(templateData.products as TemplateProduct[]);
-        else if (Array.isArray(templateData.product_list) && !cancelled)
-          setProducts(templateData.product_list as TemplateProduct[]);
 
       } catch (e) {
         if (!cancelled)
@@ -329,16 +268,14 @@ export default function TemplateDetailPage() {
                     const img = getProductImage(p);
                     const row = (
                       <div className="flex flex-grow items-center gap-4">
-                        {img ? (
-                          <img
-                            src={img}
+                        <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-gray-800">
+                          <ProductPreviewImage
+                            imageUrl={img}
+                            productUrl={link}
+                            className="h-full w-full object-contain"
                             alt=""
-                            className="h-16 w-16 shrink-0 rounded-lg object-cover bg-gray-800"
-                            onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
                           />
-                        ) : (
-                          <div className="h-16 w-16 shrink-0 rounded-lg bg-white/10" />
-                        )}
+                        </div>
                         <div className="min-w-0 flex-grow">
                           <p className="truncate text-sm font-bold text-white">{name}</p>
                           {brand && <p className="text-xs text-gray-500">{brand}</p>}

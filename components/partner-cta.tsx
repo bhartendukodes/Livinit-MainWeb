@@ -34,7 +34,7 @@ export default function PartnerCta() {
           rates and happier customers.
         </p>
         <a
-          href="/partner#demo"
+          href="/partner#onboarding"
           className="partner-cta-btn inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-4 font-semibold text-white shadow-lg shadow-indigo-500/25 transition-all duration-300 hover:from-indigo-500 hover:to-purple-500 hover:shadow-xl hover:shadow-indigo-500/30 hover:scale-[1.02]"
         >
           Get Started Today

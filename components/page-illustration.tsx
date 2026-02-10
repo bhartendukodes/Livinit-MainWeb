@@ -20,6 +20,7 @@ export default function PageIllustration({
           width={846}
           height={594}
           alt="Page illustration"
+          priority
         />
       </div>
       {multiple && (
